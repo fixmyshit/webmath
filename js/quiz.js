@@ -156,6 +156,7 @@
         $('remainingWrap').hidden = (settings.limit === 0);
         $('elapsed').textContent = '0:00';
         $('remaining').textContent = formatTime(settings.limit);
+        $('remaining').style.color = '';
         updateProgress();
         show('quiz');
 
@@ -209,6 +210,7 @@
         if (run.s.limit > 0) {
             const left = Math.max(0, run.s.limit - elapsed);
             $('remaining').textContent = formatTime(Math.ceil(left));
+            $('remaining').style.color = (left <= 10) ? '#F00' : '';   // last 10 seconds go red
             if (left <= 0) finish();                   // time's up
         }
     }
@@ -258,11 +260,11 @@
         show('results');
     }
 
-    function card(big, label, sub) {
+    function card(big, label, sub, isRed) {
         const box = el('div', 'Card');
-        box.appendChild(el('span', 'Big', big));
+        box.appendChild(el('span', isRed ? 'Big Red' : 'Big', big));
         box.appendChild(el('span', 'Sub', label));
-        if (sub) { box.appendChild(document.createElement('br')); box.appendChild(el('span', 'Sub', sub)); }
+        if (sub) box.appendChild(el('span', 'Sub', sub));
         return box;
     }
 
@@ -274,7 +276,7 @@
         const percent   = r.total > 0 ? Math.round((r.correct / r.total) * 100) + '%' : '\u2014';
 
         summary.appendChild(card(r.correct + ' / ' + r.total, 'correct', percent));
-        summary.appendChild(card(String(r.missed), 'missed', r.blank ? r.blank + ' left blank' : ''));
+        summary.appendChild(card(String(r.missed), 'missed', r.blank ? r.blank + ' left blank' : '', r.missed > 0));
         summary.appendChild(card(formatTime(r.timeTaken), 'time taken', r.usedPreset ? '(preset)' : '(real time)'));
         summary.appendChild(card(perMinute, 'correct per minute'));
 
