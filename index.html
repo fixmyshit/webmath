@@ -6,15 +6,14 @@
         <meta name='description' content='Web Math Minute - online fundamental math practice'>
         <meta name='author' content='Mark Goodall'>
 
-        <!-- Your saved site files (relative paths, no leading slash) -->
+        <!-- Your saved site files only (relative paths, no leading slash) -->
         <link rel='stylesheet' type='text/css' href='css/wsh.min_refresh.css'>
         <link rel='stylesheet' type='text/css' href='css/style_refresh.css'>
         <script src='js/wsh.critical.min_refresh=20260209.js'></script>
         <script src='js/wsh.deferred.min_refresh=20260209.js' defer></script>
         <script src='js/deferred_refresh=20260223.js' defer></script>
 
-        <!-- New: small add-on styles + logic for the local quiz (loads AFTER your CSS) -->
-        <link rel='stylesheet' type='text/css' href='css/quiz.css'>
+        <!-- Quiz logic (no extra CSS file) -->
         <script src='js/quiz.js' defer></script>
     </head>
     <body style='overflow-y:scroll;' class='WMMbody'>
@@ -228,30 +227,33 @@
                                     <span class='Label'></span>
                                 </div>
 
-                                <!-- ===== NEW: test controls (below the original form layout) ===== -->
+                                <!-- ===== NEW: test controls (plain table, your existing styles) ===== -->
                                 <div style='clear:both;'></div>
-                                <div class='QuizTest'>
-                                    <b>Test controls</b>
-                                    <div style='clear:both;padding-top:6px;'>
-                                        <input type='checkbox' id='AUTOSOLVE' checked><label for='AUTOSOLVE'>Solve answers when I press Start</label>
-                                    </div>
-                                    <div style='clear:both;'></div>
-                                    <table style='margin-left:0;margin-top:4px;'>
-                                        <tr>
-                                            <td>Missed questions</td>
-                                            <td><input id='MISSED' type='text' inputmode='numeric' value='0' style='width:44px;'></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Time taken (s)</td>
-                                            <td><input id='TIMETAKEN' type='text' inputmode='numeric' value='30' placeholder='real' style='width:44px;'></td>
-                                        </tr>
-                                    </table>
-                                    <div class='Label' style='white-space:normal;padding:4px 0 0 0;'>
-                                        Used only when "Solve answers" is ticked. Leave Time taken empty to use the real time.
-                                        Untick to play normally with real results.
-                                    </div>
+                                <br>
+                                <table>
+                                    <tr>
+                                        <td colspan='2'><b>Test controls</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan='2'>
+                                            <input type='checkbox' id='AUTOSOLVE' checked><label for='AUTOSOLVE'>Solve answers when I press Start</label>
+                                            <div style='clear:both;'></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Missed questions</td>
+                                        <td><input id='MISSED' type='text' inputmode='numeric' value='0' style='width:44px;'></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Time taken (s)</td>
+                                        <td><input id='TIMETAKEN' type='text' inputmode='numeric' value='30' placeholder='real' style='width:44px;'></td>
+                                    </tr>
+                                </table>
+                                <div class='Centered Label'>
+                                    Used only when "Solve answers" is ticked.<br>
+                                    Empty Time taken = real time. Untick to play normally.
                                 </div>
-                                <p id='setupError' class='MathScore' style='text-align:center;' hidden></p>
+                                <p id='setupError' class='MathScore Centered' hidden></p>
                             </form>
                         </div>
                         <div style='float:none;clear:both;'>&nbsp;</div>
@@ -262,28 +264,33 @@
 
                     <!-- ============ SCREEN 2: QUIZ ============ -->
                     <section id='quizScreen' hidden>
-                        <div class='QuizBar'>
-                            <span class='Label'>Time</span><span id='elapsed' class='MathTimer'>0:00</span>
-                            <span id='remainingWrap'><span class='Label'>Left</span><span id='remaining' class='MathTimer'>0:00</span></span>
-                            <span id='progress' class='Label'></span>
-                            <button type='button' id='finishBtn' class='Button Plain'>Finish</button>
-                        </div>
-                        <div id='sheet' class='QuizSheet'></div>
+                        <table id='quizBar' cellpadding='3' style='position:sticky;top:0;'>
+                            <tr>
+                                <td class='Label'>Time</td>
+                                <td id='elapsed' class='MathTimer'>0:00</td>
+                                <td id='remainingLabel' class='Label'>Left</td>
+                                <td id='remaining' class='MathTimer'>0:00</td>
+                                <td id='progress' class='Label'></td>
+                                <td><button type='button' id='finishBtn' class='Button Plain'>Finish</button></td>
+                            </tr>
+                        </table>
+                        <div id='sheet'></div>
                     </section>
 
                     <!-- ============ SCREEN 3: RESULTS ============ -->
                     <section id='resultsScreen' hidden>
                         <span class="Title">RESULTS</span>
-                        <div id='summary' class='QuizSummary'></div>
-                        <div class='QuizReviewWrap'>
-                            <table id='review' class='QuizReview'>
-                                <thead>
-                                    <tr><th>#</th><th>Question</th><th>Your answer</th><th>Correct</th><th></th></tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                        <p>
+                        <table cellpadding='3'>
+                            <tbody id='summary'></tbody>
+                        </table>
+                        <br>
+                        <table id='review' border='1' cellpadding='3'>
+                            <thead>
+                                <tr><th>#</th><th>Question</th><th>Your answer</th><th>Correct</th><th></th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <p class='Centered'>
                             <button type='button' id='againBtn' class='Button Plain'>Try again (same settings)</button>
                             <button type='button' id='changeBtn' class='Button Plain'>Change settings</button>
                         </p>
