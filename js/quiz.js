@@ -1,5 +1,6 @@
 /*
  * quiz.js - local, offline quiz logic for the Web Math Minute test copy.
+ * Uses ONLY your existing CSS classes (MathTimer, MathScore, Label, Button Plain ...).
  *
  * Flow:  setup form  ->  startRun()  ->  quiz sheet  ->  finish()  ->  results
  *
@@ -153,7 +154,9 @@
         };
 
         buildSheet();
-        $('remainingWrap').hidden = (settings.limit === 0);
+        const noLimit = (settings.limit === 0);
+        $('remainingLabel').hidden = noLimit;          // hide "Left" when there is no time limit
+        $('remaining').hidden = noLimit;
         $('elapsed').textContent = '0:00';
         $('remaining').textContent = formatTime(settings.limit);
         $('remaining').style.color = '';
@@ -171,18 +174,30 @@
         tick();
     }
 
+    // The sheet is a plain <table>: 3 questions per row (number, question, answer box).
     function buildSheet() {
+        const COLUMNS = 3;
         const sheet = $('sheet');
         sheet.textContent = '';
 
+        const table = el('table');
+        table.setAttribute('cellpadding', '3');
+
+        let tr = null;
         run.questions.forEach((q, i) => {
-            const row = el('div', 'QuizQ');
-            row.appendChild(el('span', 'N', (i + 1) + '.'));
-            row.appendChild(el('span', 'T', q.text));
+            if (i % COLUMNS === 0) {
+                tr = el('tr');
+                table.appendChild(tr);
+            } else {
+                const gap = el('td');                  // spacer between question groups
+                gap.setAttribute('width', '24');
+                tr.appendChild(gap);
+            }
 
             const input = el('input', 'MathResponse');
             input.type = 'text';
             input.autocomplete = 'off';
+            input.setAttribute('size', '4');
             input.addEventListener('input', updateProgress);
             input.addEventListener('keydown', (event) => {
                 if (event.key !== 'Enter') return;
@@ -191,10 +206,16 @@
                 if (next) next.focus(); else finish();  // Enter on the last box = finish
             });
 
-            row.appendChild(input);
-            sheet.appendChild(row);
+            const answerCell = el('td');
+            answerCell.appendChild(input);
+
+            tr.appendChild(el('td', 'Label', (i + 1) + '.'));
+            tr.appendChild(el('td', '', q.text));
+            tr.appendChild(answerCell);
             run.inputs.push(input);
         });
+
+        sheet.appendChild(table);
     }
 
     function updateProgress() {
@@ -260,12 +281,18 @@
         show('results');
     }
 
-    function card(big, label, sub, isRed) {
-        const box = el('div', 'Card');
-        box.appendChild(el('span', isRed ? 'Big Red' : 'Big', big));
-        box.appendChild(el('span', 'Sub', label));
-        if (sub) box.appendChild(el('span', 'Sub', sub));
-        return box;
+    // One line of the summary table:  label | value | small grey note
+    function summaryRow(label, value, note, isRed) {
+        const tr = el('tr');
+        tr.appendChild(el('td', '', label));
+
+        const valueCell = el('td', isRed ? 'MathScore' : '');   // MathScore = your red bold score style
+        if (isRed) valueCell.textContent = value;
+        else       valueCell.appendChild(el('b', '', value));
+        tr.appendChild(valueCell);
+
+        tr.appendChild(el('td', 'Label', note || ''));
+        return tr;
     }
 
     function renderResults(r) {
@@ -275,24 +302,24 @@
         const perMinute = r.timeTaken > 0 ? (r.correct / (r.timeTaken / 60)).toFixed(1) : '\u2014';
         const percent   = r.total > 0 ? Math.round((r.correct / r.total) * 100) + '%' : '\u2014';
 
-        summary.appendChild(card(r.correct + ' / ' + r.total, 'correct', percent));
-        summary.appendChild(card(String(r.missed), 'missed', r.blank ? r.blank + ' left blank' : '', r.missed > 0));
-        summary.appendChild(card(formatTime(r.timeTaken), 'time taken', r.usedPreset ? '(preset)' : '(real time)'));
-        summary.appendChild(card(perMinute, 'correct per minute'));
+        summary.appendChild(summaryRow('Correct', r.correct + ' / ' + r.total, percent, false));
+        summary.appendChild(summaryRow('Missed', String(r.missed), r.blank ? r.blank + ' left blank' : '', r.missed > 0));
+        summary.appendChild(summaryRow('Time taken', formatTime(r.timeTaken), r.usedPreset ? '(preset)' : '(real time)', false));
+        summary.appendChild(summaryRow('Correct per minute', perMinute, '', false));
 
         const body = $('review').querySelector('tbody');
         body.textContent = '';
 
         r.rows.forEach((row, i) => {
-            const tr = document.createElement('tr');
-            if (row.status === 'wrong') tr.className = 'Wrong';
-            if (row.status === 'blank') tr.className = 'Blank';
+            const tr = el('tr');
+            const bad = (row.status !== 'correct');
+            const cls = bad ? 'MathScore' : '';         // wrong / blank rows show in your red style
 
-            tr.appendChild(el('td', '', String(i + 1)));
-            tr.appendChild(el('td', '', row.q.text));
-            tr.appendChild(el('td', '', row.raw === '' ? '\u2014' : row.raw));
-            tr.appendChild(el('td', '', String(row.q.answer)));
-            tr.appendChild(el('td', '', row.status === 'correct' ? '\u2713' : '\u2717'));
+            tr.appendChild(el('td', cls, String(i + 1)));
+            tr.appendChild(el('td', cls, row.q.text));
+            tr.appendChild(el('td', cls, row.raw === '' ? '\u2014' : row.raw));
+            tr.appendChild(el('td', cls, String(row.q.answer)));
+            tr.appendChild(el('td', cls, bad ? '\u2717' : '\u2713'));
             body.appendChild(tr);
         });
     }
