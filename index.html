@@ -1,9 +1,7 @@
-
 <!doctype html>
 <html lang='en'>
     <head>
         <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>Web Math Minute (local test copy)</title>
         <meta name='description' content='Web Math Minute - online fundamental math practice'>
         <meta name='author' content='Mark Goodall'>
@@ -15,7 +13,7 @@
         <script src='js/wsh.deferred.min_refresh=20260209.js' defer></script>
         <script src='js/deferred_refresh=20260223.js' defer></script>
 
-        <!-- New: styles + logic for the local quiz -->
+        <!-- New: small add-on styles + logic for the local quiz (loads AFTER your CSS) -->
         <link rel='stylesheet' type='text/css' href='css/quiz.css'>
         <script src='js/quiz.js' defer></script>
     </head>
@@ -35,153 +33,240 @@
             <div id='WSHpagefetch'>
                 <div class="MainBlock Left">
 
-                    <!-- ============ SCREEN 1: SETUP ============ -->
+                    <!-- ============ SCREEN 1: SETUP (same layout as the original page) ============ -->
                     <section id='setupScreen'>
                         <span class="Title">PRACTICE ONLINE</span>
-                        <br><br>
+                        <br>
+                        <br>
                         To begin, choose the type of math sheet and the range of numbers you want to use (maximum and minimum). Select a practice number if you want to concentrate on a specific number.
-                        <br><br>
+
+                        <!--  <br><br>HINT: To answer questions quickly, use your right hand on the numeric keyboard and your left hand on the TAB key. -->
+                        <br>
+                        <br>
                         The timer will start as soon as you press the start button. Answer as many questions as you can.
 
-                        <form id='WSHFORM' class='QuizForm' action='#' method='post'>
-                            <div class='QuizCols'>
-
-                                <!-- Column 1: operations -->
-                                <div class='QuizCol'>
-                                    <label><input type='checkbox' name='OPERATIONS[]' value='A' checked>&nbsp;Addition</label>
-                                    <label><input type='checkbox' name='OPERATIONS[]' value='S'>&nbsp;Subtraction</label>
-                                    <label><input type='checkbox' name='OPERATIONS[]' value='M'>&nbsp;Multiplication</label>
-                                    <label><input type='checkbox' name='OPERATIONS[]' value='D'>&nbsp;Division</label>
+                        <div style='width:400px;margin-left:auto;margin-right:auto;margin-top:20px;clear:both;' name='VERSION3'>
+                            <form action='#' method='post' ID='WSHFORM'>
+                                <div style='width:300px;                  float:left;padding-bottom:20px;'></div>
+                                <div style='width:150px;text-align:left;  float:left;padding-left:1px;'>
+                                    <label style='vertical-align:bottom; display:inline-block;'>
+                                        <input type='checkbox' name='OPERATIONS[]' value='A' checked>&nbsp;Addition
+                                    </label>
+                                    <label style='vertical-align:bottom; display:inline-block;'>
+                                        <input type='checkbox' name='OPERATIONS[]' value='S'>&nbsp;Subtraction
+                                    </label>
+                                    <label style='vertical-align:bottom; display:inline-block;'>
+                                        <input type='checkbox' name='OPERATIONS[]' value='M'>&nbsp;Multiplication
+                                    </label>
+                                    <label style='vertical-align:bottom; display:inline-block;'>
+                                        <input type='checkbox' name='OPERATIONS[]' value='D'>&nbsp;Division
+                                    </label>
+                                    <br>
+                                    <br>
                                 </div>
-
-                                <!-- Column 2: number settings -->
-                                <div class='QuizCol'>
+                                <div style='width:170px;text-align:left;  float:left;'>
                                     <table>
                                         <tr>
-                                            <td>Minimum</td>
+                                            <td>Minimum  </td>
                                             <td>
-                                                <select id='MINIMUM' name='MINIMUM'>
-                                                    <option value='-10'>-10</option><option value='-9'>-9</option><option value='-8'>-8</option>
-                                                    <option value='-7'>-7</option><option value='-6'>-6</option><option value='-5'>-5</option>
-                                                    <option value='-4'>-4</option><option value='-3'>-3</option><option value='-2'>-2</option>
-                                                    <option value='-1'>-1</option><option value='0'>0</option>
+                                                <select id='MINIMUM' name='MINIMUM' style='width:50px;'>
+                                                    <option value='-10'>-10</option>
+                                                    <option value='-9'>-9</option>
+                                                    <option value='-8'>-8</option>
+                                                    <option value='-7'>-7</option>
+                                                    <option value='-6'>-6</option>
+                                                    <option value='-5'>-5</option>
+                                                    <option value='-4'>-4</option>
+                                                    <option value='-3'>-3</option>
+                                                    <option value='-2'>-2</option>
+                                                    <option value='-1'>-1</option>
+                                                    <option value='0'>0</option>
                                                     <option selected value='1'>1</option>
-                                                    <option value='2'>2</option><option value='3'>3</option><option value='4'>4</option>
-                                                    <option value='5'>5</option><option value='6'>6</option><option value='7'>7</option>
-                                                    <option value='8'>8</option><option value='9'>9</option><option value='10'>10</option>
-                                                    <option value='11'>11</option><option value='12'>12</option><option value='13'>13</option>
-                                                    <option value='14'>14</option><option value='15'>15</option><option value='16'>16</option>
-                                                    <option value='17'>17</option><option value='18'>18</option><option value='19'>19</option>
-                                                    <option value='20'>20</option><option value='30'>30</option><option value='40'>40</option>
-                                                    <option value='50'>50</option><option value='60'>60</option><option value='70'>70</option>
-                                                    <option value='80'>80</option><option value='90'>90</option><option value='100'>100</option>
+                                                    <option value='2'>2</option>
+                                                    <option value='3'>3</option>
+                                                    <option value='4'>4</option>
+                                                    <option value='5'>5</option>
+                                                    <option value='6'>6</option>
+                                                    <option value='7'>7</option>
+                                                    <option value='8'>8</option>
+                                                    <option value='9'>9</option>
+                                                    <option value='10'>10</option>
+                                                    <option value='11'>11</option>
+                                                    <option value='12'>12</option>
+                                                    <option value='13'>13</option>
+                                                    <option value='14'>14</option>
+                                                    <option value='15'>15</option>
+                                                    <option value='16'>16</option>
+                                                    <option value='17'>17</option>
+                                                    <option value='18'>18</option>
+                                                    <option value='19'>19</option>
+                                                    <option value='20'>20</option>
+                                                    <option value='30'>30</option>
+                                                    <option value='40'>40</option>
+                                                    <option value='50'>50</option>
+                                                    <option value='60'>60</option>
+                                                    <option value='70'>70</option>
+                                                    <option value='80'>80</option>
+                                                    <option value='90'>90</option>
+                                                    <option value='100'>100</option>
                                                 </select>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Maximum</td>
+                                            <td>Maximum  </td>
                                             <td>
-                                                <select id='MAXIMUM' name='MAXIMUM'>
-                                                    <option value='-10'>-10</option><option value='-9'>-9</option><option value='-8'>-8</option>
-                                                    <option value='-7'>-7</option><option value='-6'>-6</option><option value='-5'>-5</option>
-                                                    <option value='-4'>-4</option><option value='-3'>-3</option><option value='-2'>-2</option>
-                                                    <option value='3'>3</option><option value='4'>4</option><option value='5'>5</option>
-                                                    <option value='6'>6</option><option value='7'>7</option><option value='8'>8</option>
-                                                    <option value='9'>9</option><option value='10'>10</option><option value='11'>11</option>
+                                                <select id='MAXIMUM' name='MAXIMUM' style='width:50px;'>
+                                                    <option value='-10'>-10</option>
+                                                    <option value='-9'>-9</option>
+                                                    <option value='-8'>-8</option>
+                                                    <option value='-7'>-7</option>
+                                                    <option value='-6'>-6</option>
+                                                    <option value='-5'>-5</option>
+                                                    <option value='-4'>-4</option>
+                                                    <option value='-3'>-3</option>
+                                                    <option value='-2'>-2</option>
+                                                    <option value='3'>3</option>
+                                                    <option value='4'>4</option>
+                                                    <option value='5'>5</option>
+                                                    <option value='6'>6</option>
+                                                    <option value='7'>7</option>
+                                                    <option value='8'>8</option>
+                                                    <option value='9'>9</option>
+                                                    <option value='10'>10</option>
+                                                    <option value='11'>11</option>
                                                     <option selected value='12'>12</option>
-                                                    <option value='13'>13</option><option value='14'>14</option><option value='15'>15</option>
-                                                    <option value='16'>16</option><option value='17'>17</option><option value='18'>18</option>
-                                                    <option value='19'>19</option><option value='20'>20</option><option value='30'>30</option>
-                                                    <option value='40'>40</option><option value='50'>50</option><option value='60'>60</option>
-                                                    <option value='70'>70</option><option value='80'>80</option><option value='90'>90</option>
-                                                    <option value='100'>100</option><option value='500'>500</option><option value='999'>999</option>
+                                                    <option value='13'>13</option>
+                                                    <option value='14'>14</option>
+                                                    <option value='15'>15</option>
+                                                    <option value='16'>16</option>
+                                                    <option value='17'>17</option>
+                                                    <option value='18'>18</option>
+                                                    <option value='19'>19</option>
+                                                    <option value='20'>20</option>
+                                                    <option value='30'>30</option>
+                                                    <option value='40'>40</option>
+                                                    <option value='50'>50</option>
+                                                    <option value='60'>60</option>
+                                                    <option value='70'>70</option>
+                                                    <option value='80'>80</option>
+                                                    <option value='90'>90</option>
+                                                    <option value='100'>100</option>
+                                                    <option value='500'>500</option>
+                                                    <option value='999'>999</option>
                                                 </select>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Practice</td>
+                                            <td>Practice </td>
                                             <td>
-                                                <select id='PRACTICE' name='PRACTICE'>
+                                                <select id='PRACTICE' name='PRACTICE' style='width:50px;'>
                                                     <option selected value=''></option>
-                                                    <option value='1'>1</option><option value='2'>2</option><option value='3'>3</option>
-                                                    <option value='4'>4</option><option value='5'>5</option><option value='6'>6</option>
-                                                    <option value='7'>7</option><option value='8'>8</option><option value='9'>9</option>
-                                                    <option value='10'>10</option><option value='11'>11</option><option value='12'>12</option>
-                                                    <option value='13'>13</option><option value='14'>14</option><option value='15'>15</option>
-                                                    <option value='16'>16</option><option value='17'>17</option><option value='18'>18</option>
-                                                    <option value='19'>19</option><option value='20'>20</option>
+                                                    <option value='1'>1</option>
+                                                    <option value='2'>2</option>
+                                                    <option value='3'>3</option>
+                                                    <option value='4'>4</option>
+                                                    <option value='5'>5</option>
+                                                    <option value='6'>6</option>
+                                                    <option value='7'>7</option>
+                                                    <option value='8'>8</option>
+                                                    <option value='9'>9</option>
+                                                    <option value='10'>10</option>
+                                                    <option value='11'>11</option>
+                                                    <option value='12'>12</option>
+                                                    <option value='13'>13</option>
+                                                    <option value='14'>14</option>
+                                                    <option value='15'>15</option>
+                                                    <option value='16'>16</option>
+                                                    <option value='17'>17</option>
+                                                    <option value='18'>18</option>
+                                                    <option value='19'>19</option>
+                                                    <option value='20'>20</option>
                                                 </select>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Questions</td>
                                             <td>
-                                                <select id='QUESTIONS' name='QUESTIONS'>
-                                                    <option value='10'>10</option><option value='20'>20</option><option value='30'>30</option>
+                                                <select id='QUESTIONS' name='QUESTIONS' style='width:50px;'>
+                                                    <option value='10'>10</option>
+                                                    <option value='20'>20</option>
+                                                    <option value='30'>30</option>
                                                     <option value='40'>40</option>
                                                     <option selected value='50'>50</option>
-                                                    <option value='60'>60</option><option value='70'>70</option><option value='80'>80</option>
-                                                    <option value='90'>90</option><option value='100'>100</option><option value='120'>120</option>
+                                                    <option value='60'>60</option>
+                                                    <option value='70'>70</option>
+                                                    <option value='80'>80</option>
+                                                    <option value='90'>90</option>
+                                                    <option value='100'>100</option>
+                                                    <option value='120'>120</option>
                                                 </select>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Timer (sec)</td>
+                                            <td>Timer (s)</td>
                                             <td>
-                                                <!-- Type any number of seconds, or pick a suggestion. 0 = no limit -->
-                                                <input id='TIMER' type='number' min='0' step='1' value='60' list='timerOptions'>
+                                                <!-- Type any number of seconds or pick a suggestion. 0 = no limit -->
+                                                <input id='TIMER' type='text' inputmode='numeric' value='60' list='timerOptions' style='width:44px;'>
                                                 <datalist id='timerOptions'>
                                                     <option value='0'>off</option>
-                                                    <option value='20'></option><option value='30'></option><option value='45'></option>
-                                                    <option value='60'></option><option value='120'></option><option value='180'></option>
-                                                    <option value='240'></option><option value='300'></option><option value='600'></option>
+                                                    <option value='20'>20s</option>
+                                                    <option value='30'>30s</option>
+                                                    <option value='45'>45s</option>
+                                                    <option value='60'>1m</option>
+                                                    <option value='120'>2m</option>
+                                                    <option value='180'>3m</option>
+                                                    <option value='240'>4m</option>
+                                                    <option value='300'>5m</option>
+                                                    <option value='600'>10m</option>
                                                 </datalist>
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
+                                <div style='width:60px; text-align:center;float:left;padding-top:20px;'>
+                                    <input type='image' src='images/wmm/start.png' class='GoodIcon Grow' alt='Start' title='Click to Start' style='width:60px;'>
+                                    <span class='Label'></span>
+                                </div>
 
-                                <!-- Column 3: test controls -->
-                                <div class='QuizCol QuizTest'>
-                                    <strong>Test controls</strong>
-                                    <label class='Tight'>
-                                        <input id='AUTOSOLVE' type='checkbox' checked>&nbsp;Solve answers when I press Start
-                                    </label>
-                                    <table>
+                                <!-- ===== NEW: test controls (below the original form layout) ===== -->
+                                <div style='clear:both;'></div>
+                                <div class='QuizTest'>
+                                    <b>Test controls</b>
+                                    <div style='clear:both;padding-top:6px;'>
+                                        <input type='checkbox' id='AUTOSOLVE' checked><label for='AUTOSOLVE'>Solve answers when I press Start</label>
+                                    </div>
+                                    <div style='clear:both;'></div>
+                                    <table style='margin-left:0;margin-top:4px;'>
                                         <tr>
                                             <td>Missed questions</td>
-                                            <td><input id='MISSED' type='number' min='0' step='1' value='0'></td>
+                                            <td><input id='MISSED' type='text' inputmode='numeric' value='0' style='width:44px;'></td>
                                         </tr>
                                         <tr>
-                                            <td>Time taken (sec)</td>
-                                            <td><input id='TIMETAKEN' type='number' min='0' step='1' value='30' placeholder='real'></td>
+                                            <td>Time taken (s)</td>
+                                            <td><input id='TIMETAKEN' type='text' inputmode='numeric' value='30' placeholder='real' style='width:44px;'></td>
                                         </tr>
                                     </table>
-                                    <small>
-                                        Only used when "Solve answers" is ticked. Leave Time taken empty to use the real elapsed time.
+                                    <div class='Label' style='white-space:normal;padding:4px 0 0 0;'>
+                                        Used only when "Solve answers" is ticked. Leave Time taken empty to use the real time.
                                         Untick to play normally with real results.
-                                    </small>
+                                    </div>
                                 </div>
-
-                                <!-- Start button -->
-                                <div class='QuizStart'>
-                                    <input type='image' src='images/wmm/start.png' class='GoodIcon Grow' alt='Start' title='Click to Start' style='width:60px;'>
-                                </div>
-                            </div>
-                            <p id='setupError' class='QuizError' hidden></p>
-                        </form>
-
+                                <p id='setupError' class='MathScore' style='text-align:center;' hidden></p>
+                            </form>
+                        </div>
+                        <div style='float:none;clear:both;'>&nbsp;</div>
                         <br>
-                        Want to print practice sheets instead?  Click here to <a href='https://webmathminute.com/sheets'>Print Sheets</a>.
+                        Want to print practice sheets instead?  Click here to <a href='https://webmathminute.com/sheets'>Print Sheets</a>
+                        .
                     </section>
 
                     <!-- ============ SCREEN 2: QUIZ ============ -->
                     <section id='quizScreen' hidden>
                         <div class='QuizBar'>
-                            <span>Time: <b id='elapsed'>0:00</b></span>
-                            <span id='remainingWrap'>Left: <b id='remaining'>0:00</b></span>
-                            <span id='progress'></span>
-                            <button type='button' id='finishBtn' class='QuizBtn'>Finish</button>
+                            <span class='Label'>Time</span><span id='elapsed' class='MathTimer'>0:00</span>
+                            <span id='remainingWrap'><span class='Label'>Left</span><span id='remaining' class='MathTimer'>0:00</span></span>
+                            <span id='progress' class='Label'></span>
+                            <button type='button' id='finishBtn' class='Button Plain'>Finish</button>
                         </div>
                         <div id='sheet' class='QuizSheet'></div>
                     </section>
@@ -199,8 +284,8 @@
                             </table>
                         </div>
                         <p>
-                            <button type='button' id='againBtn' class='QuizBtn'>Try again (same settings)</button>
-                            <button type='button' id='changeBtn' class='QuizBtn'>Change settings</button>
+                            <button type='button' id='againBtn' class='Button Plain'>Try again (same settings)</button>
+                            <button type='button' id='changeBtn' class='Button Plain'>Change settings</button>
                         </p>
                     </section>
 
