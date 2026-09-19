@@ -11,9 +11,7 @@
             gTagAttribute('js', new Date());
             gTagAttribute('config', 'UA-112445297-1');
         </script>
-        <!DOCTYPE HTML>
-        <!-- html -->
-        <!-- head -->
+        <meta charset='utf-8'>
         <title>Web Math Minute</title>
         <meta name='description' content='Web Math Minute - online fundamental math practice'>
         <meta name='keywords' content='math minute online practice addition subtraction multiplication division' lang='en'>
@@ -24,22 +22,24 @@
         <meta name='og:image' content='https://webmathminute.com/images/logos/webmathminute.png'>
         <meta name='og:description' content='WebMathMinute - Online Math Practice - Helping children strengthen their basic foundation in math. '>
         <meta name='fb:admins' content='mark.goodall.67'>
-        <link rel='stylesheet' type='text/css' href='/css/wsh.min.css?refresh=20260517'>
-        <link rel='stylesheet' type='text/css' href='/css/style.css?refresh=20260608'>
-        <script src='/js/wsh.critical.min.js?refresh=20260209'></script>
-        <script src='/js/wsh.deferred.min.js?refresh=20260209' defer></script>
-        <script src='/js/deferred.js?refresh=20260223' defer></script>
+
+        <!-- Local files: no leading slash, no ?refresh= query strings -->
+        <link rel='stylesheet' type='text/css' href='css/wsh.min_refresh.css'>
+        <link rel='stylesheet' type='text/css' href='css/style_refresh.css'>
+        <script src='js/wsh.critical.min_refresh=20260209.js'></script>
+        <script src='js/wsh.deferred.min_refresh=20260209.js' defer></script>
+        <script src='js/deferred_refresh=20260223.js' defer></script>
     </head>
     <body style='overflow-y:scroll;' class='WMMbody'>
-        <img src='/images/logos/webmathminute.png'>
-        <!-- WSHcoreMenu for https://webmathminute.com/online -->
+        <img src='images/logos/webmathminute.png' alt='Web Math Minute'>
+        <!-- WSHcoreMenu -->
         <div class='WMMmenu'>
-            <a class='Item Off' href='/' title=''>home</a>
-            <a class='Item Off' href='/sheets' title=''>sheets</a>
-            <a class='Item On (4)' href='/online' title=''>online</a>
-            <a class='Item Off' href='/scores' title=''>scores</a>
-            <a class='Item Off' href='/contact' title=''>contact</a>
-            <a class='Item Off' href='/signin' title=''>sign in</a>
+            <a class='Item Off' href='index.html' title=''>home</a>
+            <a class='Item Off' href='https://webmathminute.com/sheets' title=''>sheets</a>
+            <a class='Item On' href='index.html' title=''>online</a>
+            <a class='Item Off' href='https://webmathminute.com/scores' title=''>scores</a>
+            <a class='Item Off' href='https://webmathminute.com/contact' title=''>contact</a>
+            <a class='Item Off' href='https://webmathminute.com/signin' title=''>sign in</a>
         </div>
         <div id="WSHpage">
             <div id='WSHpagefetch'>
@@ -48,7 +48,7 @@
                     <br>
                     <br>
                     To begin, choose the type of math sheet and the range of numbers you want to use (maximum and minimum). Select a practice number if you want to concentrate on a specific number.
-  
+
 
                     <!--  <br><br>HINT: To answer questions quickly, use your right hand on the numeric keyboard and your left hand on the TAB key. -->
                     <br>
@@ -57,7 +57,7 @@
 
 
                     <div style='width:400px;margin-left:auto;margin-right:auto;margin-top:20px;clear:both;' name='VERSION3'>
-                        <form action='/online-start' method='post' ID='WSHFORM'>
+                        <form action='https://webmathminute.com/online-start' method='post' ID='WSHFORM'>
                             <div style='width:300px;                  float:left;padding-bottom:20px;'></div>
                             <div style='width:150px;text-align:left;  float:left;padding-left:1px;'>
                                 <label style='vertical-align:bottom; display:inline-block;'>
@@ -233,19 +233,20 @@
                                 </table>
                             </div>
                             <div style='width:60px; text-align:center;float:left;padding-top:20px;'>
-                                <input type='image' src='/images/wmm/start.png' class='GoodIcon Grow' alt='Start' title='Click to Start' style='width:60px;'>
+                                <input type='image' src='images/wmm/start.png' class='GoodIcon Grow' alt='Start' title='Click to Start' style='width:60px;'>
                                 <span class='Label'></span>
                             </div>
                         </form>
                     </div>
                     <div style='float:none;clear:both;'>&nbsp;</div>
                     <br>
-                    Want to print practice sheets instead?  Click here to <a href='/sheets'>Print Sheets</a>
-                    .  
+                    Want to print practice sheets instead?  Click here to <a href='https://webmathminute.com/sheets'>Print Sheets</a>
+                    .
 
 
                 </div>
             </div>
         </div>
         <div class='Copyright'> &copy; 2007-2026 Outer Limits Consulting </div>
-</ div></ body></ html>
+    </body>
+</html>
