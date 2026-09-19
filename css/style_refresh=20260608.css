@@ -1,0 +1,242 @@
+/* WebMathMinute.com style.css Version 1.02 */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px; 
+    color: #000000;
+    background-color: #FFFFFF;
+    width:800px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+table,tr,td,p {
+    font-size: 14px; 
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+A {
+    font-family: Arial, Helvetica, sans-serif;
+}
+A:hover {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+image       { border:0; vertical-align:bottom;}
+img         { border:0; vertical-align:middle;}
+
+input[type=image]:focus{outline:none;} 				/* remove that pesky gold outline border on images when you click them */
+
+input[type="checkbox"], label {   /* line up the checkbox labels */
+    float: left;
+    line-height: 1.6em;
+    height: 1.6em;
+    margin: 0px 2px;
+    padding: 0px;
+    font-size: inherit;
+}
+
+
+.WMMSimpleMenuOLD {
+    display:inline;
+    background-color: #CCC;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 2px;
+}
+.WMMSimpleMenu-On {
+    background-color: #F90;
+    color: #000000;
+    text-decoration: none;
+    padding: 2px;
+}
+.WMMSimpleMenu-On:hover {
+    background-color: #F90;
+}
+.WMMSimpleMenu-Off {
+    background-color: #CCC;
+    color: #000000;
+    text-decoration: none;
+    padding: 2px;
+}
+.WMMSimpleMenu-Off:hover {
+    background-color: #FC0;
+}
+
+
+
+.WMMmenu {
+    display:inline;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 2px;
+}
+.WMMmenu .Item {
+    background-color: #CCC;
+    color: #000;
+    text-decoration: none;
+    padding: 4px;
+}
+.WMMmenu .On {
+    background-color: #F90;
+    color: #000000;
+    text-decoration: none;
+    padding: 2px;
+}
+.WMMmenu .On:hover {
+    background-color: #F91;
+}
+.WMMmenu .Off {
+    background-color: #CCC;
+    color: #000000;
+    text-decoration: none;
+    padding: 2px;
+}
+.WMMmenu .Off:hover {
+    background-color: #FC0;
+}
+
+
+
+
+.Title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:  18px;
+    color: #000000;
+    text-decoration: none;
+}
+
+
+
+	
+
+
+.MainBlock {
+    width:600px;
+    font-size: 14px;
+    color: #000000;
+    padding:0px;
+    margin-top:20px;
+    margin-bottom:0px;
+    margin-left:40px;
+    margin-right:0px;
+}   
+
+.MathScore {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:  16px;
+    color: #FF0000;
+    font-weight: bold;
+}
+.MathTimer {
+    width:100px;
+    font-size:  16px;
+    color: #999999;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    border-radius:3px;
+}
+
+.Odometer {
+    width:90px;
+    background-color:#FF8811;
+    padding-top:8px;
+    padding-bottom:1px;
+    border-radius:3px;
+    font-size: 11px;
+    color: #000000;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+.Odometer img {
+    width:10px;
+}   
+
+.Centered {
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+    text-align:center;
+}
+
+
+
+.Copyright {
+    font-size: 9px;
+    color: #000000;
+    width:800px;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:20px;
+}
+
+
+
+.Group_User {
+    width:750px;
+    padding:0px;
+    margin:0px;
+    text-align:left;
+}
+
+.Group_Usercode {
+    width:90px;
+    padding:7px;
+    margin:2px;
+    font-size:17px;
+    font-color:#000;
+    border-style:solid;
+    border-color:#000;
+    border-width:1px;
+    border-radius:5px;
+    text-align:center;
+}
+
+
+.Group_Userteam {
+    width:65px;
+    padding:7px;
+    margin:2px;
+    font-size:17px;
+    font-color:#000;
+    border-style:solid;
+    border-color:#000;
+    border-width:1px;
+    border-radius:5px;
+    text-align:center;
+}
+
+.Group_Username {
+    width:280px;
+    padding:7px;
+    margin:2px;
+    font-size:19px;
+    font-color:#000;
+    border-style:solid;
+    border-color:#000;
+    border-width:1px;
+    border-radius:5px;
+    text-align:left;
+}
+
+.Group_Password {
+    width:160px;
+    padding:7px;
+    margin:2px;
+    font-size:19px;
+    font-color:#000;
+    border-style:solid;
+    border-color:#000;
+    border-width:1px;
+    border-radius:5px;
+    text-align:left;
+}
+
+
